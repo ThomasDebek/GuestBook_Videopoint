@@ -1,0 +1,10 @@
+<p class="lead">
+  Witaj w naszej ksiedze gosci!
+</p>
+
+<% @posts.each do |post| %>
+    <blockquote>
+      <p><%= post.body %></p>
+      <foother><cite><%= post.author %></cite></foother>
+    </blockquote>
+<% end %>
