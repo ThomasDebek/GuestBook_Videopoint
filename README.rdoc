@@ -28,3 +28,6 @@ Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
 
 2.10 Demonstracja Rails, budowanie ksiegi gosci, cz. 2 viedopoint
+2.11 Bonus: sztuczka z edytorem
+3. Modele
+3.6
