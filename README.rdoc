@@ -35,3 +35,5 @@ Please feel free to use a different markup language if you do not plan to run
 3.8 Scopes - to nic innego jak nazwana kwerenda
 
 3.9 Asocjacja belongs_to i has_many
+3.10 Asocjacaja has_and_belongs_to_many - czyli przypisanie wiele do wielu (robimy to za pomoca tabeli posredniej
+    - ktora przechowuje pojedyncze przypisanie taga do posta)
