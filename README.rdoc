@@ -37,3 +37,8 @@ Please feel free to use a different markup language if you do not plan to run
 3.9 Asocjacja belongs_to i has_many
 3.10 Asocjacaja has_and_belongs_to_many - czyli przypisanie wiele do wielu (robimy to za pomoca tabeli posredniej
     - ktora przechowuje pojedyncze przypisanie taga do posta)
+3.11 Asocjacja has_many :through
+
+     http://guides.rubyonrails.org/association_basics.html#the-has-many-through-association
+
+3.12 Kwerendy na asocjacjach
