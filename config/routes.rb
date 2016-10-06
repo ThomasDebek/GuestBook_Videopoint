@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+
+
+  get 'posts2/new'
+  get 'posts2/edit'
+  get 'posts2/index'
+  get 'posts2/show'
+  resources :posts2
+
   root 'posts#index'
 
   resources :posts

@@ -42,3 +42,4 @@ Please feel free to use a different markup language if you do not plan to run
      http://guides.rubyonrails.org/association_basics.html#the-has-many-through-association
 
 3.12 Kwerendy na asocjacjach
+4. Kontrollery
