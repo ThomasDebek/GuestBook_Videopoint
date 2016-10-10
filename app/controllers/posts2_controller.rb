@@ -12,6 +12,7 @@ class Posts2Controller < ApplicationController
   end
 
   def index
+    @posts2 = Post2.all
   end
 
   def show
