@@ -3,6 +3,13 @@
   <%= link_to "Dodaj wlsny wpis juz teraz", new_post_path %>
 </p>
 
+
+<div id="content-placeholder">
+    <%= link_to "Niespodzianka", surprise_posts_path, class: "btn btn-info", remote: true %>
+</div>
+
+
+
 <% @posts.each do |post| %>
     <blockquote>
       <p><%= post.body %></p>

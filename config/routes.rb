@@ -3,7 +3,11 @@ Rails.application.routes.draw do
 
   resources :phones
   resources :posts2
-  resources :posts
+  resources :posts do
+    collection do
+      get :surprise
+    end
+  end
 
   root 'posts#index'
 

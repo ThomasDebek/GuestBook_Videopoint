@@ -20,6 +20,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def surprise
+
+  end
+
+
   def post_params
     params.require(:post).permit(:author, :body)
   end
