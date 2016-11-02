@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :phones
   resources :posts2
   resources :posts
 
