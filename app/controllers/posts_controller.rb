@@ -1,9 +1,6 @@
 class PostsController < ApplicationController
 
 
-
-
-
   def index
     @posts = Post.all
   end
@@ -15,8 +12,13 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      flash[:notice] = "Dziekujemy za wpis"
-      redirect_to posts_path
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Dziekujemy za wpis"
+          redirect_to posts_path
+        end
+        format.js {}
+      end
     end
   end
 

@@ -87,12 +87,12 @@ Please feel free to use a different markup language if you do not plan to run
      def surprise
      end
 
-    3. Klasa w widoku (bardzo wazne: remote:true) w tej klasie bedzie sie duzo dziac
+    3. Klasa w widoku posts (bardzo wazne: remote:true) w tej klasie bedzie sie duzo dziac
       <div id="content-placeholder">
           <%= link_to "Niespodzianka", surprise_posts_path, class: "btn btn-info", remote: true %>
       </div>
 
-    4. Nowy katalog z ajaxem w views:  surprise.js.erb
+    4. Nowy katalog z ajaxem w views/posts:  surprise.js.erb
 
        $("#content-placeholder").html("<%= escape_javascript(render(partial: "surprise_content")) %>");
 
@@ -103,3 +103,42 @@ Please feel free to use a different markup language if you do not plan to run
          <p> To jest fajna niespodzianka </p>
          <p><%= link_to "Sprawdz to", posts_path, class: "btn btn-lg btn-primary" %></p>
        </div>
+
+5.7  Ajax: formularze asynchroniczne
+     1. Na początek musimy dodac id (id="form-container) : w views/posts/new
+        w której bedzie sie duzo dzialo i BARZO WAZNE dodajemy metode remote: true - to dzięki niej mamy żadanie asynchroniczne
+
+        <div id="form-container">
+          <%= form_for @post, remote: true do |f| %>
+              <div class="form-group">
+                <%= f.label :athour, "Autor" %>
+                <%= f.text_field :author, class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :body, "Tresc" %>
+                <%= f.text_field :body, class: "form-control" %>
+              </div>
+              <%= f.submit "Dodaj wpis", class: "btn btn-default" %>
+          <% end %>
+        </div>
+
+     2. W kontrolerze musimy dodac format danych ( uzytkownik moze miec wylączony js w przegladarce) a tak to niweluje ta zmiane
+          def create
+              @post = Post.new(post_params)
+              if @post.save
+                respond_to do |format|
+                  format.html do
+                    flash[:notice] = "Dziekujemy za wpis"
+                    redirect_to posts_path
+                  end
+                  format.js {}
+                end
+              end
+            end
+
+     3. Nastepnie tworzymy plik w views.posts/create.js.erb
+            $("#form-container").hide(500, function() {
+              $("#form-container").html("<div class=\"alert alert-success\">Dziekujemy za wpis!</p>");
+              $("#form-container").show(500);
+            })
+
