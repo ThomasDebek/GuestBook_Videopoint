@@ -74,3 +74,32 @@ Please feel free to use a different markup language if you do not plan to run
 
 
 5.6 Ajax: linki asynchroniczne
+
+    1.Najpierw scieżki
+      resources :posts do
+        collection do
+          get :surprise
+        end
+      end
+
+
+    2.Akcja w kontrolerze
+     def surprise
+     end
+
+    3. Klasa w widoku (bardzo wazne: remote:true) w tej klasie bedzie sie duzo dziac
+      <div id="content-placeholder">
+          <%= link_to "Niespodzianka", surprise_posts_path, class: "btn btn-info", remote: true %>
+      </div>
+
+    4. Nowy katalog z ajaxem w views:  surprise.js.erb
+
+       $("#content-placeholder").html("<%= escape_javascript(render(partial: "surprise_content")) %>");
+
+
+    5. Prashal takze w views : _surprise_content.html.erb
+       <div class="jumbotron">
+         <h1>Niespodzianka?</h1>
+         <p> To jest fajna niespodzianka </p>
+         <p><%= link_to "Sprawdz to", posts_path, class: "btn btn-lg btn-primary" %></p>
+       </div>
