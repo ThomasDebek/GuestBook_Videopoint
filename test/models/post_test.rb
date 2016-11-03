@@ -7,6 +7,6 @@ class PostTest < ActiveSupport::TestCase
 
   test "formats author" do
     p = Post.create(author: "John Locke", body: "Hello")
-    assert_equal "Jhon Locke", p.author
+    assert_equal "John Locke", p.author
   end
 end

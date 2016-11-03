@@ -149,7 +149,7 @@ Please feel free to use a different markup language if you do not plan to run
      <a href="/posts" data-no-turbolink> Ten link nie ma turbolinks</a>
 
 
-6. Pisanie automatycznych testow
+6. Pisanie automatycznych testow - Test to nic innego jak kod ktory wywoluje inny kod i ktory spr. czy jest zgodny z oczekiwaniami
 6.2 Testowanie modeli
      Mamy taką metode w modelu Post
       private
@@ -157,3 +157,4 @@ Please feel free to use a different markup language if you do not plan to run
         self.author = self.author.to_s.titleize
        end
 
+6.3 Testowanie kontrolerow
