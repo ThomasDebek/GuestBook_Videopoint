@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+  before_create :titleize_author
 
   has_many :comments
   has_and_belongs_to_many :tags
@@ -6,7 +7,7 @@ class Post < ActiveRecord::Base
 
 
   #validates :body, presence: true
-  #before_create :titleize_author
+
 
 
 #  scope :published, -> { where(author: true )}
@@ -14,9 +15,9 @@ class Post < ActiveRecord::Base
   #scope :created_before, -> { where("created_at < ?" ) }
 
 
-  #private
- # def titleize_author
-  #  self.author = self.author.to_s.titleize
- # end
+  private
+  def titleize_author
+   self.author = self.author.to_s.titleize
+  end
 
 end

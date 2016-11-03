@@ -147,3 +147,13 @@ Please feel free to use a different markup language if you do not plan to run
      Jest automatycznie wczytywany i uzywany
      ale mozna go wylaczyc :
      <a href="/posts" data-no-turbolink> Ten link nie ma turbolinks</a>
+
+
+6. Pisanie automatycznych testow
+6.2 Testowanie modeli
+     Mamy taką metode w modelu Post
+      private
+       def titleize_author
+        self.author = self.author.to_s.titleize
+       end
+
