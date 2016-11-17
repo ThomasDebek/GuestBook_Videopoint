@@ -212,6 +212,16 @@ Please feel free to use a different markup language if you do not plan to run
              end
            end
 
-6.5 Spring: szybkie uruchamianie Rails i testow
+6.5 Spring: szybkie uruchamianie Rails i testow   - dzieki temu nie musi byc uruchaminana cala apka od nowa leczy tylko same testy
+    spring
+
+    bin/rake test     - tak uruchamiamy testy/ wszystko z bin bedzie nam szybko wczytywac ale dopiero durgi raz
+    spring status
+    spring stop
+    bin/rake test
+
+
+
+
 
 
