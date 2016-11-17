@@ -41,6 +41,8 @@ group :development, :test do
   gem 'byebug'
   # gem do testow
   gem 'rspec-rails', '~> 3.5'
+  # kolejny bardzo dobry gem do testow
+  gem 'capybara'
 end
 
 group :development do
