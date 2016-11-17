@@ -25,3 +25,12 @@ class PostsControllerTest < ActionController::TestCase
 
 end
 
+
+
+
+
+test "should crate a post" do
+   assert_difference -> { Post.count}, 1 do
+     post :create, post: {author: "Duba", body: "Cipeczka"}
+end
+end
