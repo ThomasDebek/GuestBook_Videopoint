@@ -221,6 +221,39 @@ Please feel free to use a different markup language if you do not plan to run
     bin/rake test
 
 
+7. Wysylanie e-maili
+   * rails g mailer PostsMailer new_post_notification
+   * http://localhost:3000/rails/mailers       mozemy podejzec maila
+   http://localhost:3000/rails/mailers/posts_mailer/new_post_notification
+
+   w /mailer/posts_mailer.rb
+
+   class PostsMailer < ApplicationMailer
+
+     # Subject can be set in your I18n file at config/locales/en.yml
+     # with the following lookup:
+     #
+     #   en.posts_mailer.new_post_notification.subject
+     #
+     def new_post_notification(post)
+       @post = post
+
+       mail to: "to@example.org", subject: "Wow, nowy post!"
+     end
+   end
+
+
+ zmieniamy takze widoki w mailerze
+ oraz na sztywno damy mu dane chwilowo w spec/mailers/previews/posts_mailer_prewiew.rb
+
+ def new_post_notification
+     PostsMailer.new_post_notification(Post.new(author: "Jhon", body: "Czesc wszytkim"))
+   end
+
+
+
+
+i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/new_post_notification
 
 
 
