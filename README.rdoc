@@ -223,7 +223,8 @@ Please feel free to use a different markup language if you do not plan to run
 
 7. Wysylanie e-maili
    * rails g mailer PostsMailer new_post_notification
-   * http://localhost:3000/rails/mailers       mozemy podejzec maila
+       Mozemy podejrzec mailera:
+         * http://localhost:3000/rails/mailers
    http://localhost:3000/rails/mailers/posts_mailer/new_post_notification
 
    w /mailer/posts_mailer.rb
@@ -244,13 +245,14 @@ Please feel free to use a different markup language if you do not plan to run
 
 
  zmieniamy takze widoki w mailerze
- oraz na sztywno damy mu dane chwilowo w spec/mailers/previews/posts_mailer_prewiew.rb
+ oraz na sztywno damy mu dane chwilowo w :
+ spec/mailers/previews/posts_mailer_prewiew.rb
+
+ - wypelniamy pola ktore wyswietla sie podgladzei
 
  def new_post_notification
      PostsMailer.new_post_notification(Post.new(author: "Jhon", body: "Czesc wszytkim"))
-   end
-
-
+ end
 
 
 i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/new_post_notification
