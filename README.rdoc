@@ -260,3 +260,63 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
 
 
 
+
+7.2 Wysylanie e-maila
+    CHCEMY  zeby na mail wysylal sie za kazdym razem
+    dodamy callbecka i metode  - ale to nie bedzie nam wysylac maila
+
+    zrobimy to w:    app/models/post.rb
+
+      after_create :notify_admin
+
+      def notify_admin
+        PostsMailer.create_new_post_notification(self).deliver    -sama metoda deliver nie wysle go musimy uzyc serwera
+      end
+  * Musimy teraz skonfigurowac srodowisko developerskie do wysylania mailera
+    w:
+    config/development.rb
+
+    - wkleimy gotowa konfiguracje
+
+     config.action_mailer.delivery_method = :letter_opener
+      config.action_mailer.smtp_settings = {
+        :address              => "smtp.gmail.com",
+        :port                 => 587,
+        :user_name            => 'twojemail@gmail.com',
+        :password             => 'abcdefg',
+        :authentication       => "plain",
+        :enable_starttls_auto => true                       - tutaj wlaczamy polaczenie szyfrowane
+        }
+      config.action_mailer.default_url_options = { :host => "localhost:3000" }    - bardzo wazne
+         - maile nie sa renderowanae w przegladarce tylko w programie pocztowym i porgam pocztowy nie wie
+           z ktorej domenty zostala wyslana wiadoamosc i dzieki tem railsy wiedza z jakiego hosta zostala
+           wyslana ta wiadomosc
+
+        config.action_mailer.raise_delivery_errors = false      # tu mamy opcje dzieki ktorej wylanczamym dostarzczanie informacji o bledach ale my ja wlczmy
+        config.action_mailer.raise_delivery_errors = true
+
+
+  * gdy wjedziemy na:    app/mailers/post_mailer.rb
+       - widzimy ze standardowy wpis to to@example.org ale my to zmienimy na:
+
+
+       def new_post_notification(post)
+           @post = post
+           mail to: "pikowoko@gmail.com", subject: "Wow, nowy post!", from: 'Hello Rails <pikowoko@gmail.com>'
+       end
+
+  * dodalem takze gem letter_opener  - zeby dzialalo wysylanie wiadomosci w nowycgh railsach
+      group :development do
+        # Access an IRB console on exception pages or by using <%= console %> in views
+        gem 'web-console', '~> 2.0'
+     -> gem 'letter_opener'
+
+        # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+        gem 'spring'
+      end
+
+
+
+
+
+

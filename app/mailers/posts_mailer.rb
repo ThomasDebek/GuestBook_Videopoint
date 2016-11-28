@@ -7,7 +7,6 @@ class PostsMailer < ApplicationMailer
   #
   def new_post_notification(post)
     @post = post
-
-    mail to: "to@example.org", subject: "Wow, nowy post!"
+    mail to: "pikowoko@gmail.com", subject: "Wow, nowy post!", from: 'Hello Rails <pikowoko@gmail.com>'
   end
 end

@@ -17,7 +17,7 @@ class PostsController < ApplicationController
           flash[:notice] = "Dziekujemy za wpis"
           redirect_to posts_path
         end
-        format.js {}
+
       end
     end
   end
