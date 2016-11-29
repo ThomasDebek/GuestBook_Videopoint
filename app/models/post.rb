@@ -15,7 +15,7 @@ class Post < ActiveRecord::Base
 
 
   def notify_admin
-    PostsMailer.new_post_notification(self).deliver_now!
+    PostsMailer.new_post_notification(self).deliver
   end
 
   private

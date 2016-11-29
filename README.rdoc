@@ -261,7 +261,11 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
 
 
 
-7.2 Wysylanie e-maila   - uzyjemy gemu letter_opener  - on bedzie oszukiwal ze wysla poczte z serwera tylko lokalnie bedzie nam to pokazywal w przeglądarce
+7.2 Wysylanie e-maila   - uzyjemy gemu letter_opener  - on bedzie oszukiwal ze
+        wysla poczte z serwera tylko lokalnie bedzie nam to pokazywal w przeglądarce
+        podlanczamy po prostu falszywą metode wysylania emaili
+
+        
     CHCEMY  zeby na mail wysylal sie za kazdym razem
     dodamy callbecka i metode  - ale to nie bedzie nam wysylac maila
 
