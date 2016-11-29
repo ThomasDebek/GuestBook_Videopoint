@@ -12,6 +12,12 @@ Rails.application.routes.draw do
 
   root 'posts#index'
 
+  get 'locale', to: 'locales#save_locale', as: :set_locale
+
+  # adres url bedzie sie nazywal locale
+  # dalej nazwa kontrollera i nazwa akcji
+  # i nazwiemy ten url jako set_locale
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

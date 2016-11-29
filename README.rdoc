@@ -265,7 +265,7 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
         wysla poczte z serwera tylko lokalnie bedzie nam to pokazywal w przeglądarce
         podlanczamy po prostu falszywą metode wysylania emaili
 
-        
+
     CHCEMY  zeby na mail wysylal sie za kazdym razem
     dodamy callbecka i metode  - ale to nie bedzie nam wysylac maila
 
@@ -320,6 +320,57 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
       end
 
 7.3 Udawane wysylanie emaila
+
+
+8. Aplikacjie wielojezykowe, formatowanie tekstu, walut
+    * Najpierw defaultowo ustwamy jezyk w config/application.rb
+       config.i18n.default_locale = :pl
+       config.time_zone = 'Warsaw'
+    * Nastepnie dodajmy rubiowa skladnie w views/posts/index
+      - dzieki temu bedzimy mogli zmieniac jezyk
+         <h1>
+             <%= t "index.hello" %>
+             <%= link_to "Dodaj wlsny wpis juz teraz", new_post_path %>
+           </h1>
+    * Nastepnie dodajmy plik pl.yml
+      - i uzupelnijmy jego zawartosc z githuba:
+           https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/pl.yml
+    * Nastepnie zmodyfikujmy go dodajac z jakiej akcji korzysta czyli indexu
+          pl:
+            index:
+               select_language: "Wybierz jezyk (%{language})"
+               hello: "Cześć"
+               ... reszta kodu z githuba
+    * Nastepnie plik en.yml
+            en:
+              index:
+                hello: "Welcome"
+                select_language: "Select language (%{language})"
+    * W Layotsie dodajmy nasza mozliwosc wyboru jezyka
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <%= t "index.select_language", language: I18n.locale %> <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><%= link_to "PL", set_locale_path(locale: "pl")%></li> <!-- i ta akcja bedzie pobierala z save_locale params - i znajduje sie w locales_controller  -->
+                <li><%= link_to "EN", set_locale_path(locale: "en")%></li>
+              </ul>
+            </div>
+    * Musimy miec takze nowy kontroller oraz metode ustawiajaca jezyk
+         rails g controller locales
+            * a w nim metode:
+                 def save_locale
+                     session[:locale] = params[:locale]
+                     redirect_to :back
+                 end
+    * I jeszcze nasze routsy dajmy odpowiednie sciezki
+           get 'locale', to: 'locales#save_locale', as: :set_locale
+                 # adres url bedzie sie nazywal locale
+                 # dalej nazwa kontrollera i nazwa akcji
+                 # i nazwiemy ten url jako set_locale
+
+
+
 
 
 

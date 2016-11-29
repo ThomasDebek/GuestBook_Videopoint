@@ -12,6 +12,19 @@
       <%= flash[:notice] %>
     </div>
 <% end %>
+
+
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    <%= t "index.select_language", language: I18n.locale %> <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><%= link_to "PL", set_locale_path(locale: "pl")%></li> <!-- i ta akcja bedzie pobierala z save_locale params - i znajduje sie w locales_controller  -->
+    <li><%= link_to "EN", set_locale_path(locale: "en")%></li>
+  </ul>
+</div>
+
+
 <div class="container">
   <div class="page-header">
     <h1>Ksiega gosci</h1>
