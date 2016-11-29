@@ -1,3 +1,14 @@
+<pre>
+   <%= I18n.localize Time.now, format: :long %>
+  <%= I18n.localize Time.now, format: :short %>
+  <%= l Date.today, format: :short %>                     <!-- Tutaj formatujemy dzisiejsza date -->
+  <%= number_with_delimiter(1123131232.1231231231) %>     <!-- Tutaj formatujemy liczbe, w jezyku amerykanskim tysiace od milionow miliardow oddziela sie kropka-->
+  <%= number_to_currency 1254.4444444 %>                  <!-- Ta metoda formatuje dane jako walute w zl lub usd -->
+  <%= distance_of_time_in_words(rand(10_000).seconds) %>  <!-- A ta metoda to slowne odleglosc czasowa  -->
+</pre>
+
+
+
 <p class="lead">
   Witaj w naszej ksiedze gosci!
   <h1>

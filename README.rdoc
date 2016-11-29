@@ -322,7 +322,7 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
 7.3 Udawane wysylanie emaila
 
 
-8. Aplikacjie wielojezykowe, formatowanie tekstu, walut
+8.1 Aplikacjie wielojezykowe, formatowanie tekstu, walut
     * Najpierw defaultowo ustwamy jezyk w config/application.rb
        config.i18n.default_locale = :pl
        config.time_zone = 'Warsaw'
@@ -368,6 +368,26 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
                  # adres url bedzie sie nazywal locale
                  # dalej nazwa kontrollera i nazwa akcji
                  # i nazwiemy ten url jako set_locale
+
+8.2 Aplikacje wielojezyczne: formatowanie tekstu i walut
+    * domyślnie railsy nie posiadaja komunikatow po polsku ale mozemy zainstalowac gema
+      - o nazwie i18n z:
+            https://github.com/svenfuchs/rails-i18n
+    * dodajm gema:
+      gem 'rails-i18n'
+        bundle install   - oczywiscie to nic nie zmieni w naszej api ale
+                           pozwoli uzyc metody nie tylko translate ale i localize
+                           czyli daty i czasu w jezyku po polsku
+    * W indexie dodajmy metody
+        <pre>
+           <%= I18n.localize Time.now, format: :long %>
+          <%= I18n.localize Time.now, format: :short %>
+          <%= l Date.today, format: :short %>                     <!-- Tutaj formatujemy dzisiejsza date -->
+          <%= number_with_delimiter(1123131232.1231231231) %>     <!-- Tutaj formatujemy liczbe, w jezyku amerykanskim tysiace od milionow miliardow oddziela sie kropka-->
+          <%= number_to_currency 1254.4444444 %>                  <!-- Ta metoda formatuje dane jako walute w zl lub usd -->
+          <%= distance_of_time_in_words(rand(10_000).seconds) %>  <!-- A ta metoda to slowne odleglosc czasowa  -->
+        </pre>
+
 
 
 
