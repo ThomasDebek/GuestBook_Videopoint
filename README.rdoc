@@ -388,6 +388,48 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
           <%= distance_of_time_in_words(rand(10_000).seconds) %>  <!-- A ta metoda to slowne odleglosc czasowa  -->
         </pre>
 
+8.3 Simple_form: lepsze i prostsze formularze
+    * uzyjemy gema ktorego dodajemy do gemfile:
+       -   http://www.rubydoc.info/github/plataformatec/simple_form/master/frames
+               gem 'simple_form'
+                  bundle install
+       - i jak zauwazylismy w dokumentacji musimy zainstalowac odpowiednie pliki, ale
+         my zainstalujemy je z bootsrapem:
+            - poniewaz simple_form potrafi uzywac bootstrapa i dlatego my go dodamy
+            - zainstaluje on wszystkie integracje zwiazane z bootstrapem
+            rails generate simple_form:install --bootstraps
+    * I teraz w formualrzu zmieniamy zawartosc na ladniejsza
+
+        <%= simple_form_for @post do |f| %>
+          <%= f.input :author, hint: "Podaj swoje imię!" %>
+          <%= f.input :body, label: "Treść", hint: "Jakaś podpowiedź" %>
+          <%= f.association :category, prompt: "-- wybierz --" %>         - w ten sposob bardzo ladnie obsluguje ascocjacie, argument promt usowa nam poste pierwsze pole
+          <%= f.association :tags, as: :check_boxes %>                    - w ten sposob smiple form obsluzy asocjacje jako checkboxy
+
+          <%= f.submit class: "btn btn-default" %>
+        <% end %>
+
+
+
+        lub taki/itp
+
+         <%= simple_form_for @post do |f| %>
+              <%= f.input :author, hint: "Podaj swoje imie" %>
+              <%= f.input :body, label: "Tresc", hint: "Tresc posta" %>
+              <%= f.submit class: "btn btn-defalut" %>
+          <% end %>
+
+
+    * Spolszymy teraz wszytkie etykiety
+        - dodajemy to w config/locales/simple_form.en.yml
+            labels:
+                      post:                                 - nazwa modelu
+                        category: "Kategoria"
+                        author: "Imię"
+                        body: "Tresc :)"
+
+
+
 
 
 
