@@ -428,12 +428,91 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
                         author: "Imię"
                         body: "Tresc :)"
 
+8.4  KAMINARI -  Implementacja Pagniacji
+     * Mozemy ograniczyc liczbe postów w bardzo latwy sposób np:
+          def index
+            @posts = Post.limit(2)          - po przez ograniczenie w kontrolerze
+          end
+          def index
+           @posts = Post.limit(5).offset(2)   - a tutaj oprócz dwóch pierwszych (pomijamy je po prostu)
+          end
+     * Mamy także wyswietlanie linków pod wpisami i uzyjemy do tego KAMINARI:
+          https://rubygems.org/gems/kaminari
+             - postepujemy wdg. dokumentacji
+                  gem 'kaminari'
+                  bundle
+        ** I teraz na sztywno
+           def index
+             @posts = Post.page(1).per(3)    - wyswietlamy pierwsza strone i 3 tylko wpisy na niej
+           end
+        ** I z uzyciem kaminari
+          def index
+            @posts = Post.page(params[:page]).per(3)
+          end
+            - a w widoku index musimy dodac:
+               <p>
+                 <%= paginate @posts %>
+               </p>
+     * Aby wygenerowac ladne widoki do Kaminari nalezy
+           rails g kaminari:views bootstrap3
+             - kaminari pobralo wszystkie potrzebne pliki
+             - po odswiezenius strony mamy juz inne ladniejsze widoki
+           * ale co gdy chcemy miec inne nazwy zamiast next prew
+           * dodajemy nowy plik do config/locales/pl.kaminari.yml
+              a w nim:
+              pl:
+                views:
+                  pagination:
+                    first: "&laquo; Początek"
+                    last: "Koniec &raquo;"
+                    previous: "&lsaquo; Prev"
+                    next: "Next &rsaquo;"
+                    truncate: "&hellip;"
+                helpers:
+                  page_entries_info:
+                    one_page:
+                      display_entries:
+                        zero: "No %{entry_name} found"
+                        one: "Displaying <b>1</b> %{entry_name}"
+                        other: "Displaying <b>all %{count}</b> %{entry_name}"
+                    more_pages:
+                      display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
 
+           Zeby to zadziałało musimy dodac jeszcze config dla pl jezyka w config/application.rb
+           config.i18n.default_locale = :pl
+           - ale teraz po odswiezeniu strony slabo to wyglada - zmienmy to
+           - W views mamy katalog kaminari z wszystkimi widokami
+           - glownym komponentem jest _paginator.html.erb
 
+                    <%= paginator.render do -%>
+                      <ul class="pagination">
+                        <%= first_page_tag unless current_page.first? %>
+                        <%= prev_page_tag unless current_page.first? %>
+                        <% each_page do |page| -%>
+                          <% if page.left_outer? || page.right_outer? || page.inside_window? -%>
+                            <%= page_tag page %>
+                          <% elsif !page.was_truncated? -%>
+                            <%= gap_tag %>
+                          <% end -%>
+                        <% end -%>
+                        <%= next_page_tag unless current_page.last? %>
+                        <%= last_page_tag unless current_page.last? %>
+                      </ul>
+                    <% end -%>
 
-
-
-
+           - i z niego mozemy usunąc wszystkie niepotrzebne rzeczy
+                    <%= paginator.render do -%>
+                      <ul class="pagination">
+                        <% each_page do |page| -%>
+                          <% if page.left_outer? || page.right_outer? || page.inside_window? -%>
+                            <%= page_tag page %>
+                          <% elsif !page.was_truncated? -%>
+                            <%= gap_tag %>
+                          <% end -%>
+                        <% end -%>
+                      </ul>
+                    <% end -%>
+           * To nam w zupelnosci wystarczy- jest ladna i bootstrapowa
 
 
 

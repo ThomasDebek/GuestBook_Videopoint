@@ -28,6 +28,8 @@ gem 'twitter-bootstrap-rails'
 gem 'therubyracer', '~> 0.12.2'
 gem 'rails-i18n'   #gem do wyboru jezyka
 gem 'simple_form'  #gem do prostych formularzy
+gem 'kaminari'     #gem podobny do paginacji do wyswietlania linkow pod produktami m.in.
+
 
 
 # Use ActiveModel has_secure_password
