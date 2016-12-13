@@ -515,6 +515,73 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
            * To nam w zupelnosci wystarczy- jest ladna i bootstrapowa
 
 
+8.5 Devise: Logowanie i rejestracja
+     *Gem devise jest uzywany w 95% aplikacji:
+       https://rubygems.org/gems/devise
+       Skorzystamy teraz z dokumentacji
+       - dodamy bibloteke do naszego gemifa
+          gem 'devise'   lub gem 'devise', '> 3.4'  - ta dziala
+          bundle install
+          rails generate devise:install
+     * Devise dodal nam pliki m.inymi config/initializes/devise.rb
+        - w tym plikiu mamy mozliwosc okreslenia:
+              - jak sie nazwya wysylajacy emaile z haslem i linkiem potwierdzenia konta
+              - po ilu godzinach ma wygasac link do potwierdzenia konta
+              - jaka ma byc dlugosc hasla i wiele innych
+
+     * Teraz wygenerujemy nasz model -czyli naszego Uzytkownika
+          rails generate devise user
+            ** Zobaczmy co nam wygenerowal divise:
+                - model
+                - migracje
+                - wpis do routsow
+
+                Zerknijmy do migracji:
+                Widzimy ze mamy ciekawe pola, gdybysmy chcieli zeby uzytkownik sie blokowal
+                 - to wystarczy ze odznaczymy ostanie pola :lockabl
+                 - my sobie odzanczymy:
+                      ## Confirmable
+                             t.string   :confirmation_token
+                             t.datetime :confirmed_at
+                             t.datetime :confirmation_sent_at
+                             t.string   :unconfirmed_email # Only if using reconfirmable
+
+                Zeby to zadziałało musimy zajrzec do modelu i odkomentowac :   models/user.rb
+                  i dopisac to co nas interesuje czyli , :lockabl
+                    devise :database_authenticatable, :registerable,
+                             :recoverable, :rememberable, :trackable, :validatable, :confirmable
+
+            * Musimy jeszcze ustalic domyslne opcje adresow url dostarczonych do devise
+               config/environmetns/development.rb:
+                    config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+                        - i jeszcze jest nam potrzebne do tego ze nie bedzimy wysylac emaili prawdziwych tylko lokalnie w przeglądarce
+                        -   gem 'letter_opener' - tez go uzyjemy
+            * bundle
+            * Zostalo nam wygenerownaie widokow devisowych - chcemy te bootstrapowe
+               - uzyjemy do tego:
+                  https://rubygems.org/gems/devise-bootstrap-views
+                  - dodamy do gemfila
+                      gem 'devise-bootstrap-views'
+                      bundle
+            * Ta bibloteka zawera pare stylow, dziki czemu formularze wyglądają lepiej
+            * To opcja opcjonalna i dodamy ją w :
+                app/assets/stylesheets/application.css/
+                   *= require devise_bootstrap_views
+            * I teraz musimy po prostu te widoki wygenerowac:
+              rails g devise:views:bootstrap_templates
+            * Teraz odpalmy zalegle migracje i devise jest gotowy
+             rake db:migrate
+             rails s
+            * Zeby zobaczyc jakis adres wpisujemy dowolna tres w naszym adresie
+              - i wyswietlki nam sie listwa adresow url
+              - lub rake routes
+              - i my szukamy tego: /users/sign_up(.:format)
+                 new_user_registration_path 	GET 	/users/sign_up(.:format) 	devise/registrations#new
+            * Teraz mamy:
+              http://localhost:3000/users/sign_up
+
+
+
 
 
 
