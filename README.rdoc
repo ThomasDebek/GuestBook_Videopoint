@@ -586,9 +586,28 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
       * Zrobimy tak ze dla nie zalogowanych uzytkownikow - uniemozliwimy mozliwosc dodawania wpisów
       * I kolejnym krokiem bedzie ukrycie linka dla niezalogowanych
       * A takze ukrycie i pokazanie linkow dla zalogowanych i przeciwnie
-      
 
+        - Zaczniemy od dodania metod devisowych w widoku posts/index
+               <% if user_signed_in? %>
+                   <p class="lead">
+                     Witaj w naszej księdze gości!
+                     <%= link_to "Dodaj własny wpis już teraz.", new_post_path %>
+                   </p>
+               <% else %>
+                   <p class="lead">
+                     Musisz się zalogować, aby dodać wpis.
+                     <%= link_to "Zaloguj się", new_user_session_path %>
+                   </p>
+               <% end %>
 
+        - Ukrylismy linki ALE CO JEZELI UZYTKOWNIK ZNA SCIEZKE DO STRONY i wpisze recznie
+        - Zabezpieczymy sekcje oraz kontrollery aby nie wpuszczaly niezalogowanch
+        - uzyjemy do tego before action
+        - devise daje nam metode autheniticate_user!
+        - ale tylko akcie new i create zeby byla niedostepna dla niezalogowanch
+
+           * w kontrolerze post_controller
+              before_action :authenticate_user!, only: [:new, :create]
 
 
 

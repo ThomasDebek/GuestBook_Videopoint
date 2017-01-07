@@ -1,3 +1,21 @@
+<% if user_signed_in? %>
+    <p class="lead">
+      Witaj w naszej księdze gości!
+      <%= link_to "Dodaj własny wpis już teraz.", new_post_path %>
+    </p>
+<% else %>
+    <p class="lead">
+      Musisz się zalogować, aby dodać wpis.
+      <%= link_to "Zaloguj się", new_user_session_path %>
+    </p>
+<% end %>
+
+
+
+
+
+
+
 <pre>
    <%= I18n.localize Time.now, format: :long %>
   <%= I18n.localize Time.now, format: :short %>
