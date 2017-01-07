@@ -581,6 +581,13 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
               http://localhost:3000/users/sign_up
 
 
+8.6.Devise_logowanie_rejestracja_dalsza_czesc
+      * Takze mamy nasz formularz logowania i rejsteracji
+      * Zrobimy tak ze dla nie zalogowanych uzytkownikow - uniemozliwimy mozliwosc dodawania wpisów
+      * I kolejnym krokiem bedzie ukrycie linka dla niezalogowanych
+      * A takze ukrycie i pokazanie linkow dla zalogowanych i przeciwnie
+      
+
 
 
 
