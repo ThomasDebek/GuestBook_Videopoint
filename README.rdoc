@@ -643,6 +643,26 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
          - i w nim mozemy wszsytko pozmieniac
 
 
+      - Dodajmy pole confirlable -> Czyli potwierdzenie maila
+      - w migracji devisa
+      - odznaczamy pola
+
+               ## Confirmable
+                     t.string   :confirmation_token
+                     t.datetime :confirmed_at
+                     t.datetime :confirmation_sent_at
+                     t.string   :unconfirmed_email # Only if using reconfirmable
+
+      - i w modelu User dodajmey to pole confirmable
+
+                     class User < ActiveRecord::Base
+                       # Include default devise modules. Others available are:
+                       # :confirmable, :lockable, :timeoutable and :omniauthable
+                       devise :database_authenticatable, :registerable, :confirmable,
+                              :recoverable, :rememberable, :trackable, :validatable
+                     end
+
+
 
 
 
