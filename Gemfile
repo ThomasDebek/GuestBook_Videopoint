@@ -56,6 +56,7 @@ group :development do
   gem 'letter_opener'
   gem 'devise', '> 3.4'         # mechanizmy logujace
   gem 'devise-bootstrap-views'  # widoki devisowe
+  gem 'devise-i18n'
 
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

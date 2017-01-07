@@ -608,6 +608,43 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
 
            * w kontrolerze post_controller
               before_action :authenticate_user!, only: [:new, :create]
+                - teraz sie zarejestrumy
+        - Dodajmy teraz mozliwośc wylogowania sie
+        - Link powinien byc widoczny tylko dla zalogowanch uzytkownikow
+
+          * w layouts/application
+             <% if user_signed_in? %>
+                 <p><%= link_to "Wyloguj się", destroy_user_session_path, method: :delete %></p>
+             <% end %>
+
+        - Zobaczmy teraz jak Devise obsluguje zmiane hasla?
+         - klikamy na zapomnialem hasla/forget password
+
+         * po wypelnieniu maila leter opener wyswietlil nam wyslanego maila:
+               Cześć pikowoko@gmail.com!
+               Ktoś zażądał zmiany hasła do Twojego konta. Hasło możesz zmienić wchodząc na poniższy link:
+               Zmień swoje hasło
+         - i mamy link do zmiany hasla
+
+
+        - Jezeli chcemy aby nasze komunikaty wyswietlaly sie po polsku mozemy uzyc gem
+           gem 'devise-i18n', '~> 1.1', '>= 1.1.1'
+             - ale nam to juz dziala bo mamy to
+             - bundle
+             - i ustawaimy w config/application.rb
+               - na jezyk pl
+               config.i18n.default_locale = :pl
+                 - uruchamiamy serwer
+        - Po zainstalowaniu tego gema wiekszosc rzeczy zostalo zpolszczona
+
+
+        - Oprocz tego w widokach mamy devise
+         - a w nim wszystko czyli mailera (co wysyla )
+         - i w nim mozemy wszsytko pozmieniac
+
+
+
+
 
 
 
