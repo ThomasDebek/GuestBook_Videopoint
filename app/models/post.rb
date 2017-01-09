@@ -14,6 +14,11 @@ class Post < ActiveRecord::Base
 
 
 
+  mount_uploader :picture, PictureUploader   # korzystamy z dokumentacji z carrierwave
+                                             # nasz atrybut w ktorym beda przechowywane sciezki do plikow to picture
+                                             # a drugi argument to klasa PictureUploader
+
+
   def notify_admin
     PostsMailer.new_post_notification(self).deliver
   end

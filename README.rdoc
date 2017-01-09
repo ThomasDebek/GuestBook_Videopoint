@@ -719,7 +719,15 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
                    *-* Czyli jezeli mamy obrazek to bedzie zwracana miniaturka docelowo
                        a jezeli nie to bedzie tworzona zaslepka z strony placehold.it
 
-     * Teraz nasz PictuerUploader - musimy dodac do naszego modelu
+     * Teraz nasz PictuerUploader - musimy dodac do naszego modelu Post
+
+                      mount_uploader :picture, PictureUploader
+                        # korzystamy z dokumentacji z carrierwave
+                        # nasz atrybut w ktorym beda przechowywane sciezki do plikow to picture
+                        # a drugi argument to klasa PictureUploader
+
+     * Nie obedzie sie takze od migracji do naszego modelu
+        rails g migration add_picture_to_posts
 
 
 
