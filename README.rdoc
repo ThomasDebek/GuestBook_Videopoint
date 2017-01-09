@@ -670,7 +670,15 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
             rake db:migrate:reset
             rake db:reset
             rails s
-       
+
+8.7 CarrierWave_generowanie_miniatur_i_obsluga_plikow
+    * Rozbudujemy nasza strone o mozliwosc dodawania obrazkow
+     - musimy miec jeden z komponentów IMAGE MAGIC
+     - pierwsze co musimy dodac to gem:
+          gem 'carrierwave'  #gem do generowania zdjec i obslugi miniatur
+          gem 'mini_magick'  #gem wspomagajacy inter-reakcjie z imagemagiciem - aby generowac miniaturki obrazkow ktore sa zbyd duze
+            - standardowo bundle
+             
 
 
 
