@@ -727,7 +727,33 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
                         # a drugi argument to klasa PictureUploader
 
      * Nie obedzie sie takze od migracji do naszego modelu
-        rails g migration add_picture_to_posts
+         rails g migration add_picture_to_posts
+           - wchodzimy do naszej migracji i dodajemy kolumne picture do tabeli posts
+                db/migrate/20170109172625_add_picture_to_posts.rb
+                       def change
+                          add_column :posts, :picture, :string
+                       end
+           - uruchamiamy migracjie rake db:migrate
+           - uruchamiamy nasz serwer
+        - Chcemy teraz zeby w naszym formularzu pojawilo sie pole do dodawania zdjecia
+               <div class="form-group">
+                   <%= f.label :picture, "Obrazek" %>
+                   <%= f.file_field :picture, class: "form-control" %>
+               </div>
+
+               lub jezeli uzywamy simple_form
+
+               <%= f.input :picture, label: "Obrazek" %>
+
+        - Dodatkowo musimy pamietac o tym zeby w naszym kontrolerze dodac nasz atrybut
+          przechowujacy zdjecie - picture
+                def post_params
+                   params.require(:post).permit(:author, :body, :picture)
+                end
+
+
+
+
 
 
 

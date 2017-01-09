@@ -3,6 +3,7 @@
   <%= simple_form_for @post do |f| %>
       <%= f.input :author, hint: "Podaj swoje imie" %>
       <%= f.input :body, label: "Tresc", hint: "Tresc posta" %>
+      <%= f.input :picture, label: "Obrazek" %>
       <%= f.submit class: "btn btn-defalut" %>
   <% end %>
 
