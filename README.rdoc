@@ -678,7 +678,51 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
           gem 'carrierwave'  #gem do generowania zdjec i obslugi miniatur
           gem 'mini_magick'  #gem wspomagajacy inter-reakcjie z imagemagiciem - aby generowac miniaturki obrazkow ktore sa zbyd duze
             - standardowo bundle
-             
+
+
+            CarrierWave - udostepnia nam odpowiedni uploader robimy to w ten sposob:
+            skorzystamy z:
+               https://rubygems.org/gems/carrierwave
+               a tu z dokumentacji:
+               http://www.rubydoc.info/gems/carrierwave/1.0.0
+                  - nastepnie uzyjemy generatora
+
+                   rails generate uploader picture
+
+            Railsy stworzyly plik i umiescily go w :
+             app/uploaders/picture_uploader.rb
+             - wejdzmy do niego
+             - mamy tutaj plik i wiele zakomentowanych linijek
+         *** - chcemy ze zakazdym razem jak uzytkownik uplouduje jakis plik i my stworzymy sobie miniaturke
+             - odkomuntujemy pola
+                       version :thumb do
+                           process :resize_to_fit => [50, 50]
+                       end
+         *** - a takze chcemy aby uzytkownik mogl wgrac tylko pewne typy plikow o konkretnych rozszerzeniach
+             - odkomentujemy pola
+                       def extension_white_list
+                           %w(jpg jpeg gif png)
+                       end
+         *** - kiedy uzytkownik nie zaladuje zadnego obrazka,
+               i wtedy wyswietli sie pusty obrazek i bedzie widoczny blad
+               aby tego uniknac bedziemy wstawiac taka zaslepke.
+                 - zwrocimy sciezke do obrazka jezeli w danym modelu nie bedzie
+                   zaladowany zaden obrazek
+                   damy sciezke ktora korzysta z serwisu plachod - ktory ma zadanie
+                   generowanie zaslepek
+                       def default_url
+                         #   # For Rails 3.1+ asset pipeline compatibility:
+                         #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
+                         #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+                            "http://placehold.it/250x150"
+                       end
+                   *-* Czyli jezeli mamy obrazek to bedzie zwracana miniaturka docelowo
+                       a jezeli nie to bedzie tworzona zaslepka z strony placehold.it
+
+     * Teraz nasz PictuerUploader - musimy dodac do naszego modelu
+
+
+
 
 
 
