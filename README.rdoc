@@ -662,6 +662,17 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
                               :recoverable, :rememberable, :trackable, :validatable
                      end
 
+      - i tu wyskoczyl nam bąd:
+
+      undefined local variable or method confirmed_at' for # user devise
+       **
+         Rązwiazujemy go w bardzo sprytny sposob
+            rake db:migrate:reset
+            rake db:reset
+            rails s
+       
+
+
 
 
 

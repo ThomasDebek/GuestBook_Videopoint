@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="807d6b89-f178-47c7-82f3-7c3931b95256" name="Default" comment="" />
+=======
+    <list default="true" id="807d6b89-f178-47c7-82f3-7c3931b95256" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.rdoc" afterPath="$PROJECT_DIR$/README.rdoc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
+>>>>>>> 35.5.Devise_logowanie_rejestracja_dalsza_czesc
     <ignored path="GuestBook.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
@@ -38,7 +46,7 @@
           <file leaf-file-name="application.scss" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
+                <state vertical-scroll-proportion="-0.0">
                   <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
                   <folding />
                 </state>
@@ -85,16 +93,17 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="20161213203251_devise_create_users.rb" pinned="false" current-in-tab="false">
+          <file leaf-file-name="20161213203251_devise_create_users.rb" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/db/migrate/20161213203251_devise_create_users.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
+                <state vertical-scroll-proportion="0.7222222">
                   <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
+<<<<<<< HEAD
           <file leaf-file-name="post.rb" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/models/post.rb">
               <provider selected="true" editor-type-id="text-editor">
@@ -115,6 +124,8 @@
               </provider>
             </entry>
           </file>
+=======
+>>>>>>> 35.5.Devise_logowanie_rejestracja_dalsza_czesc
           <file leaf-file-name="routes.rb" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/config/routes.rb">
               <provider selected="true" editor-type-id="text-editor">
@@ -132,8 +143,13 @@
           <file leaf-file-name="README.rdoc" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/README.rdoc">
               <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
                 <state vertical-scroll-proportion="0.65608466">
                   <caret line="656" column="0" selection-start-line="656" selection-start-column="0" selection-end-line="656" selection-end-column="0" />
+=======
+                <state vertical-scroll-proportion="0.93121696">
+                  <caret line="672" column="7" selection-start-line="672" selection-start-column="7" selection-end-line="672" selection-end-column="7" />
+>>>>>>> 35.5.Devise_logowanie_rejestracja_dalsza_czesc
                   <folding />
                 </state>
               </provider>
@@ -303,7 +319,10 @@
       <sortByType />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="Scratches" />
+=======
+>>>>>>> 35.5.Devise_logowanie_rejestracja_dalsza_czesc
       <pane id="RailsProjectView" />
       <pane id="ProjectPane">
         <subPane>
@@ -390,6 +409,10 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+<<<<<<< HEAD
+=======
+      <pane id="Scratches" />
+>>>>>>> 35.5.Devise_logowanie_rejestracja_dalsza_czesc
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1003,34 +1026,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.rdoc">
+    <entry file="file://$PROJECT_DIR$/db/schema.rb">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.65608466">
           <caret line="656" column="0" selection-start-line="656" selection-start-column="0" selection-end-line="656" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20161213203251_devise_create_users.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+=======
+        <state vertical-scroll-proportion="0.3611111">
+          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+>>>>>>> 35.5.Devise_logowanie_rejestracja_dalsza_czesc
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/post.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.44708994">
           <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/schema.rb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20161213203251_devise_create_users.rb">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7222222">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.rdoc">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+=======
+        <state vertical-scroll-proportion="0.93121696">
+          <caret line="672" column="7" selection-start-line="672" selection-start-column="7" selection-end-line="672" selection-end-column="7" />
+>>>>>>> 35.5.Devise_logowanie_rejestracja_dalsza_czesc
           <folding />
         </state>
       </provider>
