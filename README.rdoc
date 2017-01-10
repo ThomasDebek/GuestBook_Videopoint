@@ -751,6 +751,17 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
                    params.require(:post).permit(:author, :body, :picture)
                 end
 
+        - Musialem odznaczyc kilka pol
+
+           include CarrierWave::MiniMagick   - to nam zaladuje nasz dodany gem
+
+           version :thumb do
+             process :resize_to_fit => [50, 50]
+           end
+
+      * Wszystkie pliki-zdjecia loduja w public/uploads/post/picture/1/nazwa_zdjecia
+
+
 
 
 

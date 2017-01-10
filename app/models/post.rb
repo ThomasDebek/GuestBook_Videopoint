@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+
   after_create :notify_admin
   before_create :titleize_author
 

@@ -30,7 +30,7 @@ gem 'rails-i18n'   #gem do wyboru jezyka
 gem 'simple_form'  #gem do prostych formularzy
 gem 'kaminari'     #gem podobny do paginacji do wyswietlania linkow pod produktami m.in.
 gem 'carrierwave'  #gem do generowania zdjec i obslugi miniatur
-gem 'mini_magick'  #gem wspomagajacy inter-reakcjie z imagemagiciem - aby generowac miniaturki obrazkow ktore sa zbyd duze
+gem 'mini_magick', '~> 4.6'  #gem wspomagajacy inter-reakcjie z imagemagiciem - aby generowac miniaturki obrazkow ktore sa zbyd duze
 
 
 
