@@ -777,6 +777,86 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
               <% end %>
      ** To tyle jezeli chodzi o generoanie plikow i minjatur obrazkow
 
+8.8 ActiveJob_delayed_job-przetwarzanie_asynchronicze
+      ** Gdy wejdziemy na jakas strone to bedziemy pobierac adresy url
+         - gdzie wpisujemy adres url
+         - i klikamy dodaj wpis
+         - wtedy zostanie pobrana strona
+         - ale bedzie ona pobierana bardzo dlugo dlatego zrobimy to asynchronicznie
+         - przeniesiemy czynnosc pobierania tej strony do innego procesu
+         - nasz model uzywa callbecka
+         - ktory czeka chwile (dzieki jenej z metod)
+         - nastepnie pobiera dane strony
+         - i znowu czeka aby pokazac jak wolno dziala
+
+
+    * Storzylem sobie nowy model controller
+          rails g model Download url:string body:text
+          rake db:migrate
+          rails g controller downloads index new
+               dodalem metody:
+                        def index
+                            @downloads = Download.all
+                          end
+
+                          def new
+                            @download = Download.new
+                          end
+
+                          def create
+                            @download = Download.new(download_params)
+                            if @download.save
+                              flash[:notice] = "Dziekujemy za pobranie pliku"
+                            end
+                            redirect_to downloads_path
+                          end
+
+
+                          private
+                          def download_params
+                            params.require(:download).permit(:url, :body)
+                          end
+          - dodalme routsy
+              resources :downloads
+          - dodalem nowe widoki index new
+          index
+               <h1>Lista wpisów</h1>
+
+               <p class="lead">
+                 Witaj w pobierarce wpisów!
+                 <%= link_to "Dodaj własny wpis już teraz.", new_download_path %>
+               </p>
+
+               <table class="table table-striper">
+                 <thead>
+                 <th>URL</th>
+                 <th>Treść</th>
+                 </thead>
+                 <tbody>
+                 <% @downloads.each do |download| %>
+                     <tr>
+                       <td><%= download.url %></td>
+                       <td><%= simple_format(truncate(download.body, length: 250)) %></td>
+                     </tr>
+                 <% end %>
+                 </tbody>
+               </table>
+
+          new
+              <h1>Dodaj wpis do pobrania</h1>
+
+              <%= form_for @download do |f| %>
+                  <div class="form-group">
+                    <%= f.label :url, "Adres URL" %>
+                    <%= f.text_field :url, class: "form-control" %>
+                  </div>
+                  <%= f.submit "Dodaj wpis", class: "btn btn-default" %>
+              <% end %>
+          rails s
+          dodaj wlasny wpis juz teraz
+          - i wyskakuje nam oczekiwany wstenpy efekt
+          
+
 
 
 

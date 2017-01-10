@@ -1,0 +1,9 @@
+<h1>Dodaj wpis do pobrania</h1>
+
+<%= form_for @download do |f| %>
+    <div class="form-group">
+      <%= f.label :url, "Adres URL" %>
+      <%= f.text_field :url, class: "form-control" %>
+    </div>
+    <%= f.submit "Dodaj wpis", class: "btn btn-default" %>
+<% end %>

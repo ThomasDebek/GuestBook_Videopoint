@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
 
+  #get 'downloads/index'
+  #get 'downloads/new'
+
   devise_for :users
+  resources :downloads
   resources :products
   resources :phones
   resources :posts2

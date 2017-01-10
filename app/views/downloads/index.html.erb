@@ -1,0 +1,21 @@
+<h1>Lista wpisów</h1>
+
+<p class="lead">
+  Witaj w pobierarce wpisów!
+  <%= link_to "Dodaj własny wpis już teraz.", new_download_path %>
+</p>
+
+<table class="table table-striper">
+  <thead>
+  <th>URL</th>
+  <th>Treść</th>
+  </thead>
+  <tbody>
+  <% @downloads.each do |download| %>
+      <tr>
+        <td><%= download.url %></td>
+        <td><%= simple_format(truncate(download.body, length: 250)) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
