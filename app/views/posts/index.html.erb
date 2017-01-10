@@ -43,10 +43,17 @@
 
 
 <% @posts.each do |post| %>
-    <blockquote>
-      <p><%= post.body %></p>
-      <foother><cite><%= post.author %></cite></foother>
-    </blockquote>
+    <div class="row">
+      <div class="col-md-4">
+        <%= image_tag post.picture.url(:thumb) %>
+      </div>
+      <div class="col-md-8">
+        <blockquote>
+          <p><%= post.body %></p>
+          <footer><cite><%= post.author %></cite></footer>
+        </blockquote>
+      </div>
+    </div>
 <% end %>
 
 

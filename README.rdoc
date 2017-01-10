@@ -761,6 +761,21 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
 
       * Wszystkie pliki-zdjecia loduja w public/uploads/post/picture/1/nazwa_zdjecia
 
+      ** Teraz dodamy widok naszego obrazka w views/posts/index
+              <% @posts.each do |post| %>
+                <div class="row">
+                  <div class="col-md-4">
+                    <%= image_tag post.picture.url(:thumb) %>
+                  </div>
+                  <div class="col-md-8">
+                    <blockquote>
+                      <p><%= post.body %></p>
+                      <footer><cite><%= post.author %></cite></footer>
+                    </blockquote>
+                  </div>
+                </div>
+              <% end %>
+     ** To tyle jezeli chodzi o generoanie plikow i minjatur obrazkow
 
 
 
