@@ -780,6 +780,7 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
 8.8 ActiveJob_delayed_job-przetwarzanie_asynchronicze
       ** Gdy wejdziemy na jakas strone to bedziemy pobierac adresy url
          - gdzie wpisujemy adres url
+         np: http://google.pl
          - i klikamy dodaj wpis
          - wtedy zostanie pobrana strona
          - ale bedzie ona pobierana bardzo dlugo dlatego zrobimy to asynchronicznie
@@ -790,12 +791,12 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
          - i znowu czeka aby pokazac jak wolno dziala
 
 
-    * Storzylem sobie nowy model controller
+    * Storzylem sobie nowy model oraz controller
           rails g model Download url:string body:text
           rake db:migrate
           rails g controller downloads index new
                dodalem metody:
-                        def index
+                          def index
                             @downloads = Download.all
                           end
 
@@ -855,7 +856,22 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
           rails s
           dodaj wlasny wpis juz teraz
           - i wyskakuje nam oczekiwany wstenpy efekt
-          
+
+        * ale jeszcze trzeba dodac metode do naszego modelu/Download
+                after_create :fetch_body
+                 private
+                 def fetch_body
+                   sleep 2        - tutaj spowanlniamy sobie pobieranie
+                   fetch_body = Net::HTTP.get(URI.parse(self.url))
+                   update_attribute(:body, fetch_body.force_encoding('UTF-8'))
+                   sleep 2
+                 end
+
+        ** ABY NAM POBIERALO ASYNCHRONICZNIE UZYJEMY gema :
+           https://github.com/collectiveidea/delayed_job
+           gemfile
+           gem 'delayed_job_active_record'
+           bundle
 
 
 

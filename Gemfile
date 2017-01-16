@@ -31,7 +31,7 @@ gem 'simple_form'  #gem do prostych formularzy
 gem 'kaminari'     #gem podobny do paginacji do wyswietlania linkow pod produktami m.in.
 gem 'carrierwave'  #gem do generowania zdjec i obslugi miniatur
 gem 'mini_magick', '~> 4.6'  #gem wspomagajacy inter-reakcjie z imagemagiciem - aby generowac miniaturki obrazkow ktore sa zbyd duze
-
+gem 'delayed_job_active_record'  #gem sluzacy  zadan asynchronicznych (pobieranie zawartosci strony)
 
 
 
