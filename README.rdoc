@@ -876,6 +876,69 @@ i tu sobie podglądamy maila : http://localhost:3000/rails/mailers/posts_mailer/
 
 
 
+           - gem 'delayed_job_active_record' - jest w duzym skurcie sytemem do kolejkowania
+             zadan/przechowywania zadan w aktwiw rekordzie
+
+             nastepnie korzystamy z dokumentacji:
+              rails generate delayed_job:active_record
+              rake db:migrate
+
+              * Dodatkowo musimy dodac taki wpis od kiedy wprowadzono activ rekorda
+              config/application.rb
+              config.active_job.queue_adapter = :delayed_job
+                -> I TO  SPR. ZE RAILSY BEDA KORZYSTALY Z DLEAYTEDJOBA do kolejkowania zadan
+
+        ** Kazde zadanie przetwarzane w railsach asynchronicznie nazywa sie JOB
+           i railsy oczywiscie posiadaja generator
+               rails g job post_fetch    ->czyli pobranie posta
+               rake db:migrate
+
+               - i widzimy ze do katalogu app/jobs/ zostal dodany nasz post_fetch
+                  queue_as :default
+                    def perform(*args)
+                      # Do something later
+                    end
+               - widzimy ze mamy tutaj standardowa metode perform
+               - do tej metody dopisujemy to co ma byc poberane asynchronicznie
+
+        ** Czyli juz mamy metode w Job to usowamy ja z models/download.rb
+        *  -i w momecie kiedy post zostanie stworzony chcemy zakolekowac nasze pobieranie
+             zeby zostala pobrana puzniej
+
+
+                class Download < ActiveRecord::Base
+                  after_create :fetch_body
+
+                  private
+                  def fetch_body
+                     PostFetchJob.perform_later(self)   - i to spowoduje ze ona bedzie wyslana do kolejki i zostanie pobrana kiedy skacza sie inne zadania zakolejkowane  (self - oznacza, aktualny argument czyli nasz Post)_
+                  end
+                end
+        ** A dajemy w naszym app/jobs/post_fetch_job.rb
+              class PostFetchJob < ActiveJob::Base
+                queue_as :default
+
+                def perform(download)
+                  sleep 2
+                  fetched_body = Net::HTTP.get(URI.parse(download.url))
+                  download.update_attribute(:body, fetched_body.force_encoding('UTF-8'))
+                  sleep 2
+                end
+              end
+
+        * rails s
+        * otwieramy druga karte w terminalu i w niej bedzeimy widziec zakolejkowanie procesy
+           rake jobs:work
+             - no i widzimy ze tu jest worker, ktory czeka na zadania które do niego wpadna
+        ** I teraz kiedy klikniemy dodamy nowy wpis, widzimy ze wpis dodal sie natychmiast lecz nie widoczna jest jescze reszta
+           - nie zostala jeszcze przetworzona
+           - czekamy chwile i po odswiezeniu strony widzimy ze wpis sie pojawil
+
+           
+
+
+
+
 
 
 
